@@ -20,6 +20,4 @@ const params: params = {
   templateId: "RuE3wNicpxp_qxzzktGfFBgr1eTWfjD8XdNJokwiZ-g"
 }
 
-export {
-  params
-}
+export default params
