@@ -2,9 +2,9 @@ import axios from "axios";
 import * as path from "path";
 import fs, { PathOrFileDescriptor } from "fs";
 import moment from "moment";
-import params from "../config";
+import { IParams } from "../interface";
 
-export const getToken = (params: params) => {
+export const getToken = (params: IParams) => {
   return new Promise((resolve, reject) => {
     const tokenFile: PathOrFileDescriptor = path.join(__dirname, "token.json");
     fs.readFile(tokenFile, "utf-8", (err: NodeJS.ErrnoException | null, data: string) => {
@@ -20,7 +20,7 @@ export const getToken = (params: params) => {
         }
       }
 
-      const { appid, secret }: params = params;
+      const { appid, secret }: IParams = params;
       axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appid}&secret=${secret}`).then(res => {
         if (res["data"] && res["data"]["errcode"]) {
           reject(data);
