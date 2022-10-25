@@ -1,10 +1,10 @@
-import params from "./config";
+import { weChatParams } from "./config";
 import { getToken } from "./token";
 import { sendMsg } from "./sendMsg";
 
 const start = async () => {
-  const access_token = await getToken(params);
-  await sendMsg({ access_token, ...params });
+  const access_token = await getToken(weChatParams);
+  await sendMsg({ access_token, ...weChatParams });
 }
 
 start();

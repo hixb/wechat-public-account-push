@@ -1,4 +1,4 @@
-import { IParams } from "./interface";
+import { IWeChatParams, IWeatherParams } from "./interface";
 
 // 原微信服务号id
 // appID: wx793aa3cb3d7d26f9
@@ -11,11 +11,23 @@ import { IParams } from "./interface";
 // my: oAXSp6GvKRcy1UaPKaUDPLcV3ByI
 // 莹: oAXSp6Dafux_aZQtgQ_J-wQqodYM
 
-const params: IParams = {
+const weChatParams: IWeChatParams = {
   appid: "wx475f1615da469ac3",
   secret: "dee6fcb93ff3b2bba802753bb2a9840a",
   touser: "oAXSp6GvKRcy1UaPKaUDPLcV3ByI",
   template_id: "RuE3wNicpxp_qxzzktGfFBgr1eTWfjD8XdNJokwiZ-g"
 }
 
-export default params
+// 天气api参数
+const weatherParams: IWeatherParams = {
+  appid: 75623248,
+  appsecret: "3lPw8n6A",
+  version: "v9",
+  cityid: 101120101,
+  city: "济南市"
+}
+
+export {
+  weChatParams,
+  weatherParams
+}
