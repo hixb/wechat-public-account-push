@@ -1,3 +1,5 @@
-import params from "./conf";
+import params from "./config";
+import { getToken } from "./token";
 
-console.log(params)
+// console.log(params)
+getToken(params);
