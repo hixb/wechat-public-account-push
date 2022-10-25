@@ -8,6 +8,9 @@ import { IParams } from "./interface";
 // appID: wx475f1615da469ac3
 // appsecret: dee6fcb93ff3b2bba802753bb2a9840a
 
+// my: oAXSp6GvKRcy1UaPKaUDPLcV3ByI
+// 莹: oAXSp6Dafux_aZQtgQ_J-wQqodYM
+
 const params: IParams = {
   appid: "wx475f1615da469ac3",
   secret: "dee6fcb93ff3b2bba802753bb2a9840a",
