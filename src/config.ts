@@ -1,4 +1,4 @@
-import { IWeChatParams, IWeatherParams } from "./interface";
+import { IWeChatParams, IWeatherParams, IImplementParams } from "./interface";
 
 // 原微信服务号id
 // appID: wx793aa3cb3d7d26f9
@@ -27,7 +27,15 @@ const weatherParams: IWeatherParams = {
   city: "济南市"
 }
 
+// 定点发送时间参数
+const executionTimeParams: IImplementParams = {
+  interval: 1, // 间隔天数, 间隔为整数
+  runNow: false, // 是否立即运行
+  time: "09:39:00" // 执行的时间点 时在0~23之间
+}
+
 export {
   weChatParams,
-  weatherParams
+  weatherParams,
+  executionTimeParams
 }

@@ -1,10 +1,10 @@
-import { weChatParams } from "./config";
+import { weChatParams, executionTimeParams } from "./config";
 import { getToken } from "./token";
 import { sendMsg } from "./sendMsg";
 import { IImplementParams } from "./interface";
 
 /**
- * 执行
+ * 执行函数
  */
 const start = async () => {
   const access_token = await getToken(weChatParams);
@@ -28,11 +28,4 @@ const timeoutFunc = (config: IImplementParams, func: any) => {
   }, recent - nowTime);
 };
 
-timeoutFunc(
-  {
-    interval: 1, // 间隔天数, 间隔为整数
-    runNow: false, // 是否立即运行
-    time: "09:39:00" // 执行的时间点 时在0~23之间
-  },
-  start()
-)
+timeoutFunc(executionTimeParams, start());
