@@ -1,5 +1,5 @@
 import axios from "axios";
-import { weatherParams } from "./config";
+import { weatherParams, tianApiParams } from "./config";
 
 /**
  * 获取日期
@@ -57,4 +57,21 @@ const getWeather = () => {
   })
 }
 
-getWeather();
+/**
+ * 早安心语
+ */
+const goodMorningHeartLanguage = () => {
+  const { key } = tianApiParams;
+  axios({ method: "get", url: "http://api.tianapi.com/zaoan/index",
+    params: {
+      key
+    }
+  }).then(res => {
+    if (res.status === 200) {
+      console.log(res["data"]["newslist"][0]["content"])
+    }
+  })
+}
+
+// getWeather();
+goodMorningHeartLanguage();

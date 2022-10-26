@@ -21,3 +21,7 @@ export interface IImplementParams {
   runNow: boolean;
   time: string;
 }
+
+export interface ITianApiParams {
+  key: string;
+}
