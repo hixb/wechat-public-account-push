@@ -5,7 +5,7 @@ const { calendar } = require("./calendarUtil.js");
 /**
  * 获取日期
  */
-const getDate = () => {
+export const getDate = () => {
   const date = new Date();
   const year = date.getFullYear();
   const month = (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1);
@@ -17,47 +17,63 @@ const getDate = () => {
 /**
  * 获取天气
  */
-const getWeather = () => {
-  axios({
-    method: "get",
-    url: "https://v0.yiketianqi.com/api?unescape=1",
-    params: {
-      ...weatherParams
-    }
-  }).then(res => {
-    if (res.status === 200) {
-      /**
-       * city: 城市名称
-       * wea: 实时天气情况
-       * tem: 实时温度
-       * tem1: 高温
-       * tem2: 低温
-       * humidity: 湿度
-       * air_tips: 空气tips
-       * kaichuang: 开窗
-       */
-      const { city, wea, tem, tem1, tem2, humidity } = res.data.data[0];
-      const { air_tips, kaichuang } = res.data.aqi;
-      console.log(res.data)
-    }
+export const getWeather = () => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "get",
+      url: "https://v0.yiketianqi.com/api?unescape=1",
+      params: {
+        ...weatherParams
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        /**
+         * city: 城市名称
+         * wea: 实时天气情况
+         * tem: 实时温度
+         * tem1: 高温
+         * tem2: 低温
+         * humidity: 湿度
+         * air_tips: 空气tips
+         * kaichuang: 开窗
+         */
+        const { city, wea, tem, tem1, tem2, humidity } = res.data.data[0];
+        const { air_tips, kaichuang } = res.data.aqi;
+        resolve({
+          wea,
+          tem,
+          tem1,
+          tem2,
+          air_tips
+        });
+      }
+    }).catch(err => {
+      reject(err as Error);
+    });
   })
 }
 
 /**
  * 获取早安心语
  */
-const goodMorningHeartLanguage = () => {
-  const { key } = tianApiParams;
-  axios({
-    method: "get",
-    url: "http://api.tianapi.com/zaoan/index",
-    params: {
-      key
-    }
-  }).then(res => {
-    if (res.status === 200) {
-      console.log(res["data"]["newslist"][0]["content"])
-    }
+export const goodMorningHeartLanguage = () => {
+  return new Promise((resolve, reject) => {
+    const { key } = tianApiParams;
+    axios({
+      method: "get",
+      url: "http://api.tianapi.com/zaoan/index",
+      params: {
+        key
+      }
+    }).then(res => {
+      if (res.status == 200) {
+        resolve({
+          txt: res["data"]["newslist"][0]["content"]
+        });
+      }
+    }).catch(err => {
+      reject(err);
+    });
   })
 }
 
@@ -77,10 +93,13 @@ const goodMorningHeartLanguage = () => {
 /**
  * 生日剩余天数
  */
-const daysRemainingOnBirthday = () => {
+export const daysRemainingOnBirthday = () => {
   // 阳历剩余天数
   const solarCalendarRemaining = calendar.birthday(...birthdayParams.time, false).pop();
   // 农历剩余天数
   const lunarCalendarRemaining = calendar.birthday(...birthdayParams.time, true).pop();
-  return `阳历生日剩余: ${solarCalendarRemaining}天 农历生日剩余: ${lunarCalendarRemaining}天`
+  return {
+    solar: `阳历生日剩余: ${solarCalendarRemaining}天`,
+    lunar: `农历生日剩余: ${lunarCalendarRemaining}天`
+  };
 }

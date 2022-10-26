@@ -21,7 +21,7 @@ const weChatParams: IWeChatParams = {
   appid: "wx475f1615da469ac3",
   secret: "dee6fcb93ff3b2bba802753bb2a9840a",
   touser: "oAXSp6GvKRcy1UaPKaUDPLcV3ByI",
-  template_id: "RuE3wNicpxp_qxzzktGfFBgr1eTWfjD8XdNJokwiZ-g"
+  template_id: "ihL9WKJ8ZPprPnWNLLVL_9lhErusymZdI382YZKoLpA"
 }
 
 // 天气api参数 => https://tianqiapi.com/index/doc
