@@ -22,6 +22,7 @@ export interface IImplementParams {
   time: string;
 }
 
+// 天行api用户key
 export interface ITianApiParams {
   key: string;
 }

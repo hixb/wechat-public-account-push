@@ -1,5 +1,6 @@
 import axios from "axios";
 import { weatherParams, tianApiParams } from "./config";
+const { calendar } = require("./calendarUtil.js");
 
 /**
  * 获取日期
@@ -35,9 +36,9 @@ const getWeather = () => {
        * air_tips: 空气tips
        * kaichuang: 开窗
        */
-      const { city, wea, tem, tem1, tem2, humidity } = res.data;
-      const { air_tips, kaichuang } = res.data.api;
-      console.log(res)
+      const { city, wea, tem, tem1, tem2, humidity } = res.data.data[0];
+      const { air_tips, kaichuang } = res.data.aqi;
+      console.log(res.data)
     }
   })
 }
@@ -60,6 +61,25 @@ const goodMorningHeartLanguage = () => {
   })
 }
 
-getWeather();
+/**
+ * 获取生日
+ * @param month 月
+ * @param day 日
+ */
+// const getDaysToBirthday = (month: number, day: number): string => {
+//   const date: any = new Date();
+//   const birthday: any = new Date(date.getFullYear(), month - 1, day);
+//   if (birthday < date) birthday.setFullYear(date.getFullYear() + 1);
+//   const roundedUp: number = Math.ceil((birthday - date) / (24 * 60 * 60 * 1000))
+//   return roundedUp == 365 ? "今天是你的生日哦, 生日快乐🎂~" : `距离你的生日还有${roundedUp}天~`;
+// }
+
+const a = () => {
+  console.log(calendar.birthday(2001, 11, 9, true))
+}
+
+// getWeather();
 // goodMorningHeartLanguage();
 // console.log(getDate())
+// console.log(getDaysToBirthday(1, 14));
+a()

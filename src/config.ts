@@ -23,7 +23,7 @@ const weChatParams: IWeChatParams = {
   template_id: "RuE3wNicpxp_qxzzktGfFBgr1eTWfjD8XdNJokwiZ-g"
 }
 
-// 天气api参数
+// 天气api参数 => https://tianqiapi.com/index/doc
 const weatherParams: IWeatherParams = {
   appid: 75623248,
   appsecret: "3lPw8n6A",
