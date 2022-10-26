@@ -20,8 +20,8 @@ const timeoutFunc = async(config: IImplementParams | any, func: Function) => {
   config.runNow && func();
   const date = new Date();
   const nowTime: number = date.getTime();
-  const timePoints: number[] = config.time.split(":").map((i: string) => parseInt(i));
-  let recent: number = date.setHours(timePoints[0], timePoints[1], timePoints[2]);
+  const [hours, min, sec] = config.time.split(":").map((i: string) => parseInt(i));
+  let recent: number = date.setHours(hours, min, sec);
   recent >= nowTime || (recent += 24 * 3600000);
   setTimeout(async () => {
     await func();
