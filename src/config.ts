@@ -1,7 +1,8 @@
 import {
   IWeChatParams,
   IWeatherParams,
-  IImplementParams
+  IImplementParams,
+  ITianApiParams
 } from "./interface";
 
 // 原微信服务号id
@@ -38,8 +39,14 @@ const executionTimeParams: IImplementParams = {
   time: "09:39:00" // 执行的时间点 时在0~23之间
 }
 
+// 天行数据api => https://www.tianapi.com/console/
+const tianApiParams: ITianApiParams = {
+  key: "59150eb68dcda3c0e7df31ab84ad3478"
+}
+
 export {
   weChatParams,
   weatherParams,
-  executionTimeParams
+  executionTimeParams,
+  tianApiParams
 }
