@@ -16,16 +16,19 @@ const start = async () => {
  * @param config
  * @param func
  */
-const timeoutFunc = (config: IImplementParams, func: any) => {
+const timeoutFunc = async(config: IImplementParams | any, func: Function) => {
   config.runNow && func();
-  const nowTime: number = new Date().getTime();
-  const timePoints: number[] = config.time.split(":").map(i => parseInt(i));
-  let recent: number = new Date().setHours.apply(null, (timePoints as any));
+  const date = new Date();
+  const nowTime: number = date.getTime();
+  const timePoints: number[] = config.time.split(":").map((i: string) => parseInt(i));
+  let recent: number = date.setHours(timePoints[0], timePoints[1], timePoints[2]);
   recent >= nowTime || (recent += 24 * 3600000);
-  setTimeout(() => {
-    func();
+  setTimeout(async () => {
+    await func();
     setInterval(func, config.interval * 3600000);
   }, recent - nowTime);
 };
 
-timeoutFunc(executionTimeParams, start());
+timeoutFunc(executionTimeParams, () => {
+  start()
+});
