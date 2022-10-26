@@ -22,6 +22,12 @@ export interface IImplementParams {
   time: string;
 }
 
+// 天行api用户key
 export interface ITianApiParams {
   key: string;
+}
+
+// 生日时间
+export interface IBirthdayParams {
+  time: number[]
 }

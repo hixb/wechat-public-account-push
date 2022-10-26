@@ -2,7 +2,8 @@ import {
   IWeChatParams,
   IWeatherParams,
   IImplementParams,
-  ITianApiParams
+  ITianApiParams,
+  IBirthdayParams
 } from "./interface";
 
 // 原微信服务号id
@@ -23,7 +24,7 @@ const weChatParams: IWeChatParams = {
   template_id: "RuE3wNicpxp_qxzzktGfFBgr1eTWfjD8XdNJokwiZ-g"
 }
 
-// 天气api参数
+// 天气api参数 => https://tianqiapi.com/index/doc
 const weatherParams: IWeatherParams = {
   appid: 75623248,
   appsecret: "3lPw8n6A",
@@ -44,9 +45,15 @@ const tianApiParams: ITianApiParams = {
   key: "59150eb68dcda3c0e7df31ab84ad3478"
 }
 
+// 生日时间
+const birthdayParams: IBirthdayParams = {
+  time: [2001, 11, 9]
+}
+
 export {
   weChatParams,
   weatherParams,
   executionTimeParams,
-  tianApiParams
+  tianApiParams,
+  birthdayParams
 }
