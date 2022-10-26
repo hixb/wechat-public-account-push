@@ -21,7 +21,14 @@ export const getToken = (params: IWeChatParams) => {
       }
 
       const { appid, secret }: IWeChatParams = params;
-      axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appid}&secret=${secret}`).then(res => {
+      axios({
+        method: "get",
+        url: "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&",
+        params: {
+          appid,
+          secret
+        }
+      }).then(res => {
         if (res["data"] && res["data"]["errcode"]) {
           reject(data);
           return;
