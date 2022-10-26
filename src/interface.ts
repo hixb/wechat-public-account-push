@@ -14,3 +14,10 @@ export interface IWeatherParams {
   cityid: number;
   city: string;
 }
+
+// 执行时机接口参数
+export interface IImplementParams {
+  interval: number;
+  runNow: boolean;
+  time: string;
+}
