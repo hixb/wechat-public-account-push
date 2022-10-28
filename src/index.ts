@@ -84,22 +84,26 @@ const start = async () => {
 
 /**
  * 设置每日定时任务
- * @param {*} hour 小时
- * @param {*} minute 分钟
- * @param {*} callTask 任务函数
+ * @param {*} targetHour 时辰
  */
-const setScheduledTask = (hour: number, minute: number, callTask: Function) => {
-  let taskTime = new Date();
-  taskTime.setHours(hour);
-  taskTime.setMinutes(minute);
-  let timeDiff = taskTime.getTime() - (new Date()).getTime(); // 获取时间差
-  timeDiff = timeDiff > 0 ? timeDiff : (timeDiff + 24 * 60 * 60 * 1000);
-  setTimeout(function() {
-    callTask(); // 首次执行
-    setInterval(callTask, 24 * 60 * 60 * 1000); // 24小时为循环周期
-  }, timeDiff);
+function setRegular(targetHour: number) {
+  let timeInterval, nowTime = new Date(), nowSeconds, targetSeconds;
+
+  // 计算当前时间的秒数
+  nowSeconds = nowTime.getHours() * 3600 + nowTime.getMinutes() * 60 + nowTime.getSeconds();
+
+  // 计算目标时间对应的秒数
+  targetSeconds = targetHour * 3600;
+
+  //  判断是否已超过今日目标小时，若超过，时间间隔设置为距离明天目标小时的距离
+  timeInterval = targetSeconds > nowSeconds ? targetSeconds - nowSeconds : targetSeconds + 24 * 3600 - nowSeconds;
+
+  setTimeout(getProductFileList, timeInterval * 1000);
 }
 
-setScheduledTask(9, 0, () => {
+const getProductFileList = () => {
   start();
-});
+  setTimeout(getProductFileList, 24 * 3600 * 1000)//之后每天调用一次
+}
+
+setRegular(8);

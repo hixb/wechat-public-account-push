@@ -20,7 +20,7 @@ import {
 const weChatParams: IWeChatParams = {
   appid: "wx475f1615da469ac3",
   secret: "dee6fcb93ff3b2bba802753bb2a9840a",
-  touser: "oAXSp6GvKRcy1UaPKaUDPLcV3ByI",
+  touser: "oAXSp6Dafux_aZQtgQ_J-wQqodYM",
   template_id: "ihL9WKJ8ZPprPnWNLLVL_9lhErusymZdI382YZKoLpA"
 }
 
